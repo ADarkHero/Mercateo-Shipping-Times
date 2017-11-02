@@ -1,7 +1,7 @@
 # Mercateo-Shipping-Times
 ![Mercateo-Shipping-Times Screenshot](https://i.imgur.com/pGdsKEy.png)
 
-Tracks shipping times for mercateo.com
+Tracks shipping times for [mercateo.com](http://www.mercateo.com)
 
 
 ## Quick start guide
