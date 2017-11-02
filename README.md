@@ -7,6 +7,8 @@ Tracks shipping times for [mercateo.com](http://www.mercateo.com)
 ## Quick start guide
 * Download latest [release](https://github.com/ADarkHero/Mercateo-Shipping-Times/releases)
 * Get your PHP-server running (PHP 5.6 recommended)
+* Open index.php in a text-editor
+
 
 ![Input SKUs](https://i.imgur.com/ribXrcA.png)
 * Input your skus at the $sku array (lines 40-44)
