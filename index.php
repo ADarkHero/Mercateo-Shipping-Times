@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Lieferzeiten Mercateo</title>
+		<title>Shipping times for Mercateo</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -21,10 +21,10 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="csv/lieferzeiten.csv"><strong>Lieferzeiten</strong> für Mercateo</a></h1>
+						<h1><a href="csv/shippingtimes.csv"><strong>Shipping times</strong> for Mercateo</a></h1>
 						<nav>
 							<ul>
-								<li><a href="csv/lieferzeiten.csv" class="icon fa-info-circle">Öffne .csv</a></li>
+								<li><a href="csv/shippingtimes.csv" class="icon fa-info-circle">Open .csv</a></li>
 							</ul>
 						</nav>
 					</header>
@@ -35,25 +35,25 @@
 						<?php
 							error_reporting(0);
 						
-							//SKUs für die jeweiligen Tage an Lieferzeit
-							//Erstes Feld ist leer, damit Array Position 1 -> 1 Tag Lieferzeit usw.
+							//SKUs for every shipping day [1]->1 cay shipping time; [2]->2 cay shipping time etc.
+							//[0] is empty, so [1] equals one day of shipping time
 							$sku = array("", "2000061433", "2000061429", "2000000001", 
 							"2000339770", "2000030510", "2000429223", 
 							"2000036901", "2000025711", "2018813196", 
 							"2000085656", "2000061491", "2000000825", 
 							"2000000155", "2000000061", "2000000189");
 							
-							//Link zur Mercateo Lieferzeitenabfrage
+							//Link to the shipping query from mercateo
 							$mercateo_base_link = "http://www.mercateo.com/deltareport.jsp?CatalogID=1955&SKU=";
 							
-							//Öffne neue Datei
-							$file = 'csv/lieferzeiten.csv';
+							//Opens a file for tracking the shipping times
+							$file = 'csv/shippingtimes.csv';
 							$current = file_get_contents($file);
 							
-							//Schreibe Datum
+							//Write current date
 							$date = date("d.m.y");
 
-							//Daten sollen nur geschrieben werden, wenn Datum noch nicht vorkam
+							//Data should only be written once per day
 							$new_stat = false;
 							if(stristr($current, $date) === FALSE){
 								$new_stat = true;
@@ -61,55 +61,51 @@
 							$current .= $date;
 							$current .= "; ";
 							
-							//Liest Lieferzeiten von Mercateo aus
+							//Reads shipping times from mercateo
 							for($i = 1; $i < count($sku); $i++){						
-								//Generiere eigenen HTML Code
+								//Generate HTML-code
 								echo '<article class="thumb">'; 
 								
 								$mercateo_link = $mercateo_base_link.$sku[$i];	
 								
-								//Liest den HTML-Code von Mercateo ein
+								//Read HTML from mercateo
 								$html = file_get_contents($mercateo_link);
 								
-								$lieferzeiten = strstr($html, 'Lieferzeit real: ');
+								$lieferzeiten = strstr($html, 'Shipping real: ');
 								$lieferzeiten = strstr($lieferzeiten, 'Mercateo', true);
 								
-								//Reale Lieferzeit berechnen
-								$lieferzeit_real = strstr($lieferzeiten, 'Versprochene', true);
+								//Calculate real shipping times
+								$lieferzeit_real = strstr($lieferzeiten, 'Promised', true);
 								$lieferzeit_real = substr($lieferzeit_real, 40, -1);
 								$lieferzeit_real = strstr($lieferzeit_real, 'Tage', true);
 								$lieferzeit_real = preg_replace("/[^0-9,.]/", "", $lieferzeit_real);
 								
 								$current .= $lieferzeit_real."; ";
 								
-								//Generiere HTML-Code
+								//Generate rest of the HTML
 								echo '<a href="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" class="image"><img src="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" alt="" /></a>';
 								echo '<h2>Versprochene: '.$i.' Tage<br />';
 								if($lieferzeit_real <= $i){
-									echo '<span style="color: #00ff00">Reale: '.$lieferzeit_real.' Tage</span></h2>';
+									echo '<span style="color: #00ff00">Reale: '.$lieferzeit_real.' days</span></h2>';
 								}
 								else if($lieferzeit_real <= $i+3){
-									echo '<span style="color: #aa0000">Reale: '.$lieferzeit_real.' Tage</span></h2>';
+									echo '<span style="color: #aa0000">Reale: '.$lieferzeit_real.' days</span></h2>';
 								}
 								else{
-									echo '<span style="color: #ff0000">Reale: '.$lieferzeit_real.' Tage</span></h2>';
+									echo '<span style="color: #ff0000">Reale: '.$lieferzeit_real.' days</span></h2>';
 								}
 								echo '</article>';
 							}
 							
-							//Schreibe Zeilenende in Datei
+							//Write endline
 							$current .= "\n";
 							
-							//Schreibe Daten in csv
+							//Write stuff to csv
 							if($new_stat){
 								file_put_contents($file, $current);
 							}
 								
-
-
-							
-								
-							
+			
 						?>
 					</div>
 
