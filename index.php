@@ -86,13 +86,13 @@
 								echo '<a href="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" class="image"><img src="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" alt="" /></a>';
 								echo '<h2>Versprochene: '.$i.' Tage<br />';
 								if($lieferzeit_real <= $i){
-									echo '<span style="color: #00ff00">Reale: '.$lieferzeit_real.' days</span></h2>';
+									echo '<span style="color: #00ff00">Real: '.$lieferzeit_real.' days</span></h2>';
 								}
 								else if($lieferzeit_real <= $i+3){
-									echo '<span style="color: #aa0000">Reale: '.$lieferzeit_real.' days</span></h2>';
+									echo '<span style="color: #aa0000">Real: '.$lieferzeit_real.' days</span></h2>';
 								}
 								else{
-									echo '<span style="color: #ff0000">Reale: '.$lieferzeit_real.' days</span></h2>';
+									echo '<span style="color: #ff0000">Real: '.$lieferzeit_real.' days</span></h2>';
 								}
 								echo '</article>';
 							}
