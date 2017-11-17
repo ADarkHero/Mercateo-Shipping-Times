@@ -98,7 +98,7 @@
 								$current .= $lieferzeit_real."; ";
 								
 								//Generate rest of the HTML
-								echo '<a href="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" class="image"><img src="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" alt="" /></a>';
+								echo '<a href="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" class="image"><img src="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'-NA.gif" alt="" /></a>';
 								echo '<h2>Versprochene: '.$lieferzeit_versprochen.'<br />';
 								if($lieferzeit_real <= $i){
 									echo '<span style="color: #00ff00">Reale: '.$lieferzeit_real.' Tage</span></h2>';
