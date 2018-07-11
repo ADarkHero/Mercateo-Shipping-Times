@@ -37,11 +37,11 @@
 						
 							//SKUs for every shipping day [1]->1 cay shipping time; [2]->2 cay shipping time etc.
 							//[0] is empty, so [1] equals one day of shipping time
-							$sku = array("", "2000061433", "2000061429", "2000000001", 
-							"2000029922", "18661909", "2000429223", 
-							"2000253631", "2000025711", "2000036586", 
-							"2000085656", "2000260159", "2000000825", 
-							"2000000155", "2000000061");
+							$sku = array("", "2001847982", "2018665455", "18661866", 
+							"2018717237", "18661844", "2019341795", 
+							"2018891248", "2018857683", "2018874278", 
+							"2018874139", "2018965861", "2018847065", 
+							"2018750585", "2018941180", "2001841808");
 							
 							//Link to the shipping query from mercateo
 							$mercateo_base_link = "http://www.mercateo.com/deltareport.jsp?CatalogID=1955&SKU=";
@@ -98,7 +98,7 @@
 								$current .= $lieferzeit_real."; ";
 								
 								//Generate rest of the HTML
-								echo '<a href="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'.gif" class="image"><img src="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'-NA.gif" alt="" /></a>';
+								echo '<a href="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'-NA.gif" class="image"><img src="http://www.mercateo.com/images/contentmanagement/delivery-charts/1955-'.$i.'-NA.gif" alt="" /></a>';
 								echo '<h2>Versprochene: '.$lieferzeit_versprochen.'<br />';
 								if($lieferzeit_real <= $i){
 									echo '<span style="color: #00ff00">Reale: '.$lieferzeit_real.' Tage</span></h2>';
